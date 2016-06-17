@@ -1,7 +1,7 @@
 #jsWeather
 Local weather app for FreeCodeCamp zipline: https://www.freecodecamp.com/challenges/show-the-local-weather
 
-#Preview as 18-jun-16
+#Preview as of 18-jun-16
 ![](preview.png)
 
 Extensions used:
