@@ -1,0 +1,83 @@
+$radio-button-size: 50px;
+$degree-size: 300px;
+$icon-size: 100px;
+
+@mixin rounded-box($h, $w, $r){
+	height: $h;
+	width: $w;
+	border-radius: $r;
+}
+
+@mixin circle-box($r){
+	@include rounded-box($r, $r, 50%);
+}
+
+#weather-container{
+	width: $degree-size;
+	margin: 0 auto;
+	position: relative;
+}
+
+#degree-container{
+	@include circle-box($degree-size);
+	background: #0ff;
+	font-size: 130px;
+	line-height: 300px;
+	text-align: center;
+}
+
+#weather-icon{
+	position: absolute;
+	@include circle-box(100px);
+	background: #000;
+	top: $degree-size - $icon-size / 2 - 20px;
+	left: -$icon-size / 2 + 20px;
+}
+
+#unit-container{
+	position: absolute;
+	width: 0;
+	height: 0;
+	background: #00f;
+	top: $degree-size - $radio-button-size / 2 - 10px;
+	left: $degree-size - $radio-button-size / 2 - 10px;
+}
+
+#unit-container > .unit-button {
+	position: absolute;
+	&:first-child{
+		left: -$radio-button-size;
+	}
+	&:last-child{
+		top: -$radio-button-size;
+	}
+}
+
+
+input[type="radio"]:not(old){
+	height: $radio-button-size;
+	width: $radio-button-size;
+	margin: 0;
+	padding: 0;
+	opacity: 0;
+}
+
+input[type="radio"]:not(old) + label{
+	font-size: 40px;
+	margin-left: -$radio-button-size;
+}
+
+input[type="radio"]:not(old) + label > span{
+	background: #0f0;
+	position: relative;
+	top: -14;
+	display: inline-block;
+	text-align: center;
+	@include circle-box($radio-button-size);
+	line-height: $radio-button-size;
+}
+
+input[type="radio"]:not(old):checked + label > span{
+	background: #00f;
+}
+
