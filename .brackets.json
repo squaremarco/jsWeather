@@ -5,7 +5,8 @@
             "sass.options": {
                 "outputDir": "../css/",
                 "imagePath": null,
-                "outputStyle": "compressed"
+                "outputStyle": "compressed",
+				"sourceComments": false
             },
             "linting.collapsed": false,
             "brackets-git.gitPath": "git"

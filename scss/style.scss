@@ -33,7 +33,7 @@ $location-font-size: 30px;
 	@include circle-box($degree-size);
 	background: #0ff;
 	text-align: center;
-	font-size: $degree-size / 3.5;
+	font-size: $degree-size / 2.5;
 	line-height: $degree-size;
 }
 
