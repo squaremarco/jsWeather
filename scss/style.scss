@@ -1,6 +1,9 @@
 $radio-button-size: 50px;
 $degree-size: 300px;
 $icon-size: 100px;
+$location-height: 50px;
+$location-width: 200px;
+$location-font-size: 30px;
 
 @mixin rounded-box($h, $w, $r){
 	height: $h;
@@ -12,38 +15,41 @@ $icon-size: 100px;
 	@include rounded-box($r, $r, 50%);
 }
 
+@mixin user-select($a){
+	-moz-user-select: $a;
+	-webkit-user-select: $a;
+	-ms-user-select: $a;
+	user-select: $a;
+}
+
 #weather-container{
 	width: $degree-size;
-	margin: 0 auto;
+	margin: 5% auto 0;
 	position: relative;
+	@include user-select(none);
 }
 
 #degree-container{
 	@include circle-box($degree-size);
 	background: #0ff;
 	text-align: center;
-	& > span {
-		font-size: 130px;
-		line-height: $degree-size;
-	}
+	font-size: $degree-size / 3.5;
+	line-height: $degree-size;
 }
 
 #weather-icon{
 	position: absolute;
-	@include circle-box(100px);
+	@include circle-box($icon-size);
 	background: #f0f;
 	line-height: $icon-size;
-	font-size: 5em;
+	font-size: $icon-size / 1.2;
 	text-align: center;
 	top: $degree-size - $icon-size / 2 - 40px;
-	left: -$icon-size / 2 + 40px;
+	left: -$icon-size / 2 + 30px;
 }
 
 #unit-container{
 	position: absolute;
-	width: 0;
-	height: 0;
-	background: #00f;
 	top: $degree-size - $radio-button-size / 2 - 10px;
 	left: $degree-size - $radio-button-size / 2 - 10px;
 	& > .unit-button {
@@ -61,8 +67,6 @@ $icon-size: 100px;
 input[type="radio"]:not(old){
 	height: $radio-button-size;
 	width: $radio-button-size;
-	margin: 0;
-	padding: 0;
 	opacity: 0;
 	& + label{
 		font-size: 40px;
@@ -70,7 +74,7 @@ input[type="radio"]:not(old){
 		& > span {
 			background: #0f0;
 			position: relative;
-			top: -14;
+			top: -14px;
 			display: inline-block;
 			text-align: center;
 			@include circle-box($radio-button-size);
@@ -86,3 +90,11 @@ input[type="radio"]:not(old){
 	}
 }
 
+#location-container{
+	font-size: $location-font-size;
+	line-height: $location-height;
+	text-align: center;
+	margin: 20px auto;
+	background: #ff0;
+	@include rounded-box($location-height, $location-width, 20px);
+}
