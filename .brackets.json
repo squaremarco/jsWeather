@@ -6,10 +6,11 @@
                 "outputDir": "../css/",
                 "imagePath": null,
                 "outputStyle": "compressed",
-				"sourceComments": false
+                "sourceComments": false
             },
             "linting.collapsed": false,
-            "brackets-git.gitPath": "git"
+            "brackets-git.gitPath": "git",
+            "livedev.multibrowser": false
         }
     }
 }
