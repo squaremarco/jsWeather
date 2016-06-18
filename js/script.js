@@ -1,21 +1,12 @@
 $.domReady(function() {
 	var degree = $("#degree-container");
-	var weather = $("#weather-icon");
+	var weather = $("#weather-icon > i");
 	var location = $("#location-container");
 
-	var celsius = 0;
-	var fahrenheit = 0;
 	var currentUnits = "C";
-
-	var weatherEmoji = {
-		"clear": "☀️",
-		"clouds": "⛅️",
-		"rain": "🌧",
-		"drizzle": "🌧",
-		"snow": "❄️",
-		"thunderstorm": "🌩",
-		"atmosphere": "🌫",
-		"extreme": "🌪"
+	var temperature = {
+		C: 0,
+		F: 0
 	};
 
 	function getLocal(){
@@ -35,14 +26,20 @@ $.domReady(function() {
 		});
 	}
 
+	function isDayTime(){
+		var time = new Date().getHours();
+		return time > 6 && time < 19;
+	}
+
+
 	getLocal().then(function(data){
 		var city = data.city;
 		location.text(city + ", " + data.country);
 		getWeather(city).then(function(data){
-			celsius = data.main.temp;
-			fahrenheit = celsius * 9 / 5 + 32;
-			degree.text(Math.round(celsius) + "°");
-			weather.text(weatherEmoji[data.weather[0].main.toLowerCase()]);
+			temperature.C = data.main.temp;
+			temperature.F = temperature.C * 9 / 5 + 32;
+			degree.text(Math.round(temperature.C) + "°");
+			weather.addClass("wi-owm-" + (isDayTime() ? "day-" : "night-") + data.weather[0].id);
 		});
 	});
 
@@ -50,13 +47,8 @@ $.domReady(function() {
 	$(".unit-button").on("click", function(){
 		var thisVal = $(this).find("input").val();
 		if(thisVal !== currentUnits){
-			if(thisVal === "F"){
-				degree.text(Math.round(fahrenheit) + "°");
-				currentUnits = "F";
-			} else {
-				degree.text(Math.round(celsius) + "°");
-				currentUnits = "C";
-			}
+			degree.text(Math.round(temperature[thisVal]) + "°");
+			currentUnits = thisVal;
 		}
 	});
 });
