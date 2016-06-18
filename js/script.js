@@ -1,7 +1,7 @@
 (function () {
 	function getLocal() {
 		return $.ajax({
-			url: "http://ipinfo.io",
+			url: "http://ip-api.com/json",
 			type: "jsonp"
 		});
 	}
@@ -43,7 +43,7 @@
 		//fire api requests
 		getLocal().then(function (data) {
 			var city = data.city;
-			location.text(city + ", " + data.country);
+			location.text(city + ", " + data.countryCode);
 			getWeather(city).then(function (data) {
 				temperature.C = data.main.temp;
 				temperature.F = temperature.C * 9 / 5 + 32;
