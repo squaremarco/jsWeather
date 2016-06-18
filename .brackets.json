@@ -10,7 +10,7 @@
             },
             "linting.collapsed": false,
             "brackets-git.gitPath": "git",
-            "livedev.multibrowser": false
+            "livedev.multibrowser": true
         }
     }
 }

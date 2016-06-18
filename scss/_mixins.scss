@@ -1,0 +1,16 @@
+@mixin rounded-box($h, $w, $r){
+	height: $h;
+	width: $w;
+	border-radius: $r;
+}
+
+@mixin circle-box($r){
+	@include rounded-box($r, $r, 50%);
+}
+
+@mixin user-select($a){
+	-moz-user-select: $a;
+	-webkit-user-select: $a;
+	-ms-user-select: $a;
+	user-select: $a;
+}

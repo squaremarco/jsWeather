@@ -1,60 +1,94 @@
-$radio-button-size: 50px;
-$degree-size: 300px;
-$icon-size: 100px;
-$location-height: 50px;
-$location-width: 200px;
-$location-font-size: 30px;
+@import 'variables', 'mixins', 'colors';
 
-@mixin rounded-box($h, $w, $r){
-	height: $h;
-	width: $w;
-	border-radius: $r;
+*{
+	box-sizing: border-box;
 }
 
-@mixin circle-box($r){
-	@include rounded-box($r, $r, 50%);
-}
-
-@mixin user-select($a){
-	-moz-user-select: $a;
-	-webkit-user-select: $a;
-	-ms-user-select: $a;
-	user-select: $a;
+body, html{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background: $background-color;
+	display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #weather-container{
-	width: $degree-size;
-	margin: 5% auto 0;
-	position: relative;
 	@include user-select(none);
+	width: $degree-size;
+	position: relative;
+	font-family: league-gothic, sans-serif;
 }
 
 #degree-container{
 	@include circle-box($degree-size);
-	background: #0ff;
+	font-size: $degree-size / 2;
+	line-height: $degree-size - 10px;
 	text-align: center;
-	font-size: $degree-size / 2.5;
-	line-height: $degree-size;
+	&.degree-hot{
+		background: $hot-color;
+	}
+	&.degree-warm{
+		background: $warm-color;
+	}
+	&.degree-cold{
+		background: $cold-color;
+	}
+	&.degree-freezing{
+		background: $freezing-color;
+	}
+	&.degree-hot, &.degree-warm {
+		color: $primary-text;
+		text-shadow: 3px 3px 0 $secondary-text;
+		border: $border-size solid $primary-border-temp;
+	}
+	&.degree-freezing, &.degree-cold {
+		color: $secondary-text;
+		text-shadow: 3px 3px 0 $primary-text;
+		border: $border-size solid $primary-border-temp;
+	}
 }
 
 #weather-icon{
-	position: absolute;
 	@include circle-box($icon-size);
-	background: #f0f;
-	text-align: center;
-	font-size: $icon-size / 2.2;
+	position: absolute;
 	top: $degree-size - $icon-size / 2 - 40px;
 	left: -$icon-size / 2 + 30px;
+	overflow: hidden;
+	font-size: $icon-size / 2.2;
+	text-align: center;
 	& > i {
-		line-height: $icon-size;
+		position: relative;
+		top : -$icon-size;
+		line-height: $icon-size - 10px;
+		transition: all .5s ease-in-out;
+	}
+	&.weather-day {
+		background: $day-color;
+		border: $border-size solid $primary-border-temp;
+		color: $primary-text;
+		text-shadow: 2px 2px 0 $secondary-text;
+	}
+	&.weather-night {
+		background: $night-color;
+		border: $border-size solid $primary-border-temp;
+		color: $secondary-text;
+		text-shadow: 2px 2px 0 $primary-text;
+	}
+	&[class^="weather"] > i{
+		top: 0px;
 	}
 }
 
 #unit-container{
 	position: absolute;
-	top: $degree-size - $radio-button-size / 2 - 10px;
-	left: $degree-size - $radio-button-size / 2 - 10px;
+	top: $degree-size - $radio-button-size / 2 - 15px;
+	left: $degree-size - $radio-button-size / 2 - 15px;
 	& > .unit-button {
+		height: $radio-button-size;
+		width: $radio-button-size;
 		position: absolute;
 		&:first-child{
 			left: -$radio-button-size;
@@ -65,38 +99,44 @@ $location-font-size: 30px;
 	}
 }
 
-
 input[type="radio"]:not(old){
 	height: $radio-button-size;
 	width: $radio-button-size;
 	opacity: 0;
 	& + label{
-		font-size: 40px;
+		position: relative;
+		top: -12px;
 		margin-left: -$radio-button-size;
+		font-size: $radio-button-size / 1.4;
 		& > span {
-			background: #0f0;
-			position: relative;
-			top: -14px;
+			@include circle-box($radio-button-size);
+			background: $radio-button-unchecked-color;
 			display: inline-block;
 			text-align: center;
-			@include circle-box($radio-button-size);
-			line-height: $radio-button-size;
+			line-height: $radio-button-size - $border-size - 1px;
+			text-shadow: 2px 2px 0 $secondary-text;
+			border: $border-size solid $primary-border-temp;
+			box-shadow: inset 0 0 0 0 $radio-button-unchecked-shadow;
+			transition: all .2s ease-in-out;
 		}
 	}
 	&:checked {
 		& + label {
 			& > span{
-				background: #00f;
+				background: $radio-button-checked-color;
+				box-shadow: inset 0px 3px 0 0 $radio-button-checked-shadow;
 			}
 		}
 	}
 }
 
 #location-container{
-	font-size: $location-font-size;
+	@include rounded-box(auto, auto, 20px);
+	background: $position-color;
+	margin: 25px auto;
+	border: $border-size solid $primary-border-temp;
+	font-size: $location-height / 1.3;
 	line-height: $location-height;
 	text-align: center;
-	margin: 20px auto;
-	background: #ff0;
-	@include rounded-box($location-height, $location-width, 20px);
+	text-shadow: 2px 2px 0 $secondary-text;
 }
