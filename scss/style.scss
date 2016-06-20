@@ -129,7 +129,7 @@ input[type="radio"]:not(old){
 }
 
 #location-container{
-	@include rounded-box($location-height + 10px, 100%, 20px);
+	@include rounded-box($location-height + $border-size * 2, 100%, 20px);
 	margin: 25px auto;
 	background: $position-color;
 	border: $border-size solid $primary-border-temp;
