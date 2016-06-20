@@ -24,6 +24,8 @@ body, html{
 
 #degree-container{
 	@include circle-box($degree-size);
+	background: $disabled-color;
+	border: $border-size solid $primary-border-temp;
 	font-size: $degree-size / 1.8;
 	line-height: $degree-size - 10px;
 	text-align: center;
@@ -42,12 +44,10 @@ body, html{
 	&.degree-hot, &.degree-warm {
 		color: $primary-text;
 		text-shadow: 3px 3px 0 $secondary-text;
-		border: $border-size solid $primary-border-temp;
 	}
 	&.degree-freezing, &.degree-cold {
 		color: $secondary-text;
 		text-shadow: 3px 3px 0 $primary-text;
-		border: $border-size solid $primary-border-temp;
 	}
 }
 
@@ -57,6 +57,8 @@ body, html{
 	top: $degree-size - $icon-size / 2 - 40px;
 	left: -$icon-size / 2 + 30px;
 	overflow: hidden;
+	background: $disabled-color;
+	border: $border-size solid $primary-border-temp;
 	font-size: $icon-size / 2.2;
 	text-align: center;
 	& > i {
@@ -67,13 +69,11 @@ body, html{
 	}
 	&.weather-day {
 		background: $day-color;
-		border: $border-size solid $primary-border-temp;
 		color: $primary-text;
 		text-shadow: 2px 2px 0 $secondary-text;
 	}
 	&.weather-night {
 		background: $night-color;
-		border: $border-size solid $primary-border-temp;
 		color: $secondary-text;
 		text-shadow: 2px 2px 0 $primary-text;
 	}
@@ -129,9 +129,9 @@ input[type="radio"]:not(old){
 }
 
 #location-container{
-	@include rounded-box(auto, auto, 20px);
-	background: $position-color;
+	@include rounded-box($location-height + 10px, 100%, 20px);
 	margin: 25px auto;
+	background: $position-color;
 	border: $border-size solid $primary-border-temp;
 	font-size: $location-height / 1.3;
 	line-height: $location-height;
