@@ -48,7 +48,7 @@
 				temperature.C = data.main.temp;
 				temperature.F = temperature.C * 9 / 5 + 32;
 				degree.addClass("degree-" + tempToWord(temperature.C));
-				degree.text(Math.round(temperature.C) + "°");
+				degree.html(Math.round(temperature.C) + "&deg;");
 				weather.find("i").addClass("wi-owm-" + (isDayTime() ? "day-" : "night-") + data.weather[0].id);
 				weather.addClass(isDayTime() ? "weather-day" : "weather-night");
 			});
@@ -58,7 +58,7 @@
 		unitButton.on("click", function () {
 			var thisVal = $(this).find("input").val();
 			if (thisVal !== currentUnits) {
-				degree.text(Math.round(temperature[thisVal]) + "°");
+				degree.html(Math.round(temperature[thisVal]) + "&deg;");
 				currentUnits = thisVal;
 			}
 		});

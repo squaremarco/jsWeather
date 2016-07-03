@@ -3,7 +3,7 @@ Local weather app for FreeCodeCamp zipline: https://www.freecodecamp.com/challen
 
 #Preview as of 18-jun-16
 ![](preview.png)
-###[Demo](http://codepen.io/squaremarco/pen/gMwbeP)
+###[Demo](http://iamsquare.it/weather/)
 
 Extensions used:
 * [domReady](https://github.com/ded/domready)
